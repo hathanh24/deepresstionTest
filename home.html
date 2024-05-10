@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Home</title>
+</head>
+<link rel="stylesheet" href="./assets/css/home.css">
+<body>
+    <div class="header">
+        <img class="logoHeader" height ="68" src="./assets/image/Screenshot 2024-05-08 220922.png" alt="">
+    </div>
+    
+    <div class="body">
+        <img width="100" src="./assets/image/6a8f8f9f5f34560405de991efefd6e82.jpg" alt="" class="brainLogo">
+        <h2 class="title">About the test</h2>
+        <p class="desciption">After receiving your results, you'll have the opportunity to learn more about your symptoms, sign up for Talkspace and talk to a mental health professional.</p>
+        <a onclick="continue1()" href="#" class="btn" >
+            Continue
+        </a>
+    </div>
+
+
+
+    
+    <div class="testBody">
+        <progress class="progress" value="1" max="21"></progress>
+        <h2 class="question">Little interest or pleasure in doing things</h2>
+        <div class="answerBox"> 
+            <button onclick="submitAnswer()" class="btn-answer firstAnswer">Không đúng với tôi chút nào cả</button>
+            <button onclick="submitAnswer()" class="btn-answer secondAnswer">Đúng với tôi phần nào, hoặc thỉnh thoảng mới đúng</button>
+            <button onclick="submitAnswer()" class="btn-answer thirdAnswer">Đúng với tôi phần nhiều, hoặc phần lớn thời gian là đúng</button>
+            <button onclick="submitAnswer()" class="btn-answer fourthAnswer">Hoàn toàn đúng với tôi, hoặc hầu hết thời gian là đúng</button>
+        </div>
+    </div>
+
+
+
+
+
+
+
+
+
+    <div class="footer">
+        <p class="policy">If you’re in a life-threatening situation,<span style="font-weight: 700;">don’t use this app</span> . Call 988 or <a style="color: rgb(0, 126, 115);" href="#">usethese resources.</a> </p>
+    </div>
+</body>
+</html>
+<script src="./assets/js/home.js"></script>
