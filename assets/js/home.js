@@ -1,32 +1,16 @@
-let questionText = document.querySelector(".question");
-let btnQuestion = document.querySelectorAll(".btn-answer");
-let progress = document.querySelector(".progress")
-let currentQuestion = 0;
-
-function continue1() {
-    document.querySelector(".body").style = "display: none"
-    document.querySelector(".testBody").style = "display: flex"
-}
-
-window.onload = function () {
-    // Khi load vào trang, thì hiện câu hỏi đầu tiên
-    questionText.innerHTML = questions[0].question
-}
-
-function submitAnswer () {
-    // khi người dùng click vào câu trả lời
-    currentQuestion++;
-    questionText.innerHTML = questions[currentQuestion].question;
-    progress.setAttribute("value", `${currentQuestion+1}`);
-}
-
+const questionText = document.querySelector(".question");
+// const btnQuestion = document.querySelectorAll('.btn-answer');
+ const btnQuestion = document.getElementsByClassName('btn-answer'); // TH Cái trên không chạy
+const progress = document.querySelector(".progress")
+const answerBox = document.querySelector(".answerBox")
+let currentQuestion = 0; // GLOBAL
+let result =[];
 let answer = [
     { answer: "Không đúng với tôi chút nào cả", point: 0 },
     { answer: "Đúng với tôi phần nào, hoặc thỉnh thoảng mới đúng", point: 1 },
     { answer: "Đúng với tôi phần nhiều, hoặc phần lớn thời gian là đúng", point: 2 },
     { answer: "Hoàn toàn đúng với tôi, hoặc hầu hết thời gian là đúng", point: 3 }
 ]
-
 let questions = [
     { question: "Tôi thấy khó mà thoải mái được", type: "S" },
     { question: "Tôi bị khô miệng", type: "A" },
@@ -50,3 +34,73 @@ let questions = [
     { question: "Tôi hay sợ vô cớ", type: "A" },
     { question: "Tôi thấy cuộc sống vô nghĩa", type: "D" }
 ]
+const renderAnswer = () => {
+    let htmlAnswer = ''; // LOCAL
+    let Class = ['firstAnswer', 'secondAnswer', 'thirdAnswer', 'fourthAnswer']
+    // CALL API -> SERVER |||| SERVER -> answer
+    answer.forEach(function (item, index) {
+        //item - Nó là phần tử mảng luôn. (Phần tử)
+        //index - thứ tự phần tử.
+        // Mỗi một item là một phần tử của html
+        if (index == 0) {
+
+        }
+        htmlAnswer += `<button onclick="submitAnswer(${item.point})" class="btn-answer ${Class[index]}">${item.answer}</button>`
+    })
+    answerBox.innerHTML = htmlAnswer
+}
+const renderQuestion = () => {
+    // In ra câu trả lời hiện tại theo biến currentQuestion
+    questionText.innerHTML = questions[currentQuestion].question;
+    // Thay đổi cục progressbar - tiến độ theo biến currentQuestion
+    progress.setAttribute("value", `${currentQuestion+1}`);
+}
+function submitAnswer (point) {
+    // khi người dùng click vào câu trả lời
+    currentQuestion++;
+    renderQuestion();
+    // câu trả lời
+    let resultItem = {
+        point: point, 
+        type: questions[currentQuestion].type
+    }
+    result.push(resultItem)
+}
+function continue1() {
+    document.querySelector(".body").style = "display: none"
+    document.querySelector(".testBody").style = "display: flex"
+}
+function removeChoosenQuestion() {
+    for (var i = 0; i < btnQuestion.length; i++) {
+         btnQuestion[i].classList.remove("choosenAnswer")
+    }
+}
+
+function highlightChoosenQuestion() {
+    let currentResult = result[currentQuestion]
+    // trước khi thêm hover vào câu đã chọn, thì phải xóa hover của câu trước
+    removeChoosenQuestion();
+    // HOVER ACTION
+    for (var i = 0; i < btnQuestion.length; i++) {
+        // btnQuestion[i].classList.remove("active")
+        // point = 0 1 2 3
+        // btnQuestion = [0 1 2 3]
+        if (i == currentResult.point) {
+            btnQuestion[i].classList.add("choosenAnswer")
+            // Thêm hover vào câu đã chọn
+            break;
+            // classlist.add - thêm giá trị class
+            // classlist.remove - xóa giá trị class
+        }
+    }
+}
+const backQuestion = () => {
+    currentQuestion--;
+    renderQuestion();
+    highlightChoosenQuestion();
+}
+window.onload = function () {
+    // Khi load vào trang, thì hiện câu hỏi đầu tiên
+    renderQuestion();
+    renderAnswer();
+}

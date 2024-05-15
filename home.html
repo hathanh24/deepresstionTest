@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Home</title>
 </head>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@icon/themify-icons@1.0.1-alpha.3/themify-icons.min.css">
 <link rel="stylesheet" href="./assets/css/home.css">
 <body>
     <div class="header">
@@ -24,13 +25,17 @@
 
     
     <div class="testBody">
-        <progress class="progress" value="1" max="21"></progress>
-        <h2 class="question">Little interest or pleasure in doing things</h2>
+        <div class="progressBar">
+            <i onclick="backQuestion()" class="icon ti ti-angle-left"></i>
+            <progress class="progress" value="1" max="21"></progress>
+            <i class="icon ti ti-angle-right"></i>
+        </div>
+        <h2 class="question"></h2>
         <div class="answerBox"> 
-            <button onclick="submitAnswer()" class="btn-answer firstAnswer">Không đúng với tôi chút nào cả</button>
+            <!-- <button onclick="submitAnswer()" class="btn-answer firstAnswer">Không đúng với tôi chút nào cả</button>
             <button onclick="submitAnswer()" class="btn-answer secondAnswer">Đúng với tôi phần nào, hoặc thỉnh thoảng mới đúng</button>
             <button onclick="submitAnswer()" class="btn-answer thirdAnswer">Đúng với tôi phần nhiều, hoặc phần lớn thời gian là đúng</button>
-            <button onclick="submitAnswer()" class="btn-answer fourthAnswer">Hoàn toàn đúng với tôi, hoặc hầu hết thời gian là đúng</button>
+            <button onclick="submitAnswer()" class="btn-answer fourthAnswer">Hoàn toàn đúng với tôi, hoặc hầu hết thời gian là đúng</button> -->
         </div>
     </div>
 
